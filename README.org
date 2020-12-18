@@ -24,6 +24,18 @@ or
     (number-separator-mode))
 #+end_src
 
+Or if you are European:
+
+#+begin_src emacs-lisp :results silent 
+  (use-package number-separator
+    :custom
+    (number-separator ".")
+    (number-separator-interval 3)
+    (number-separator-decimal-char ",")
+    :config
+    (number-separator-mode))
+#+end_src
+
 You can customize the following variables:
 - =number-separator= :: character used to separate groups of integer numbers. Default: =“,”=
 - =number-separator-interval= :: how many numbers in each group? Default: =3=.
