@@ -5,7 +5,7 @@ Want to see numbers like 123,456,789?
 
 Use this.
 
-This package uses the 'display text property to show the number separations. The underlying text remains unchanged. 
+This package uses the 'display text property and font-lock to show the number separations. The underlying text remains unchanged. 
 
 #+begin_src emacs-lisp :results silent  
 (require 'number-separator)
