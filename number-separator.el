@@ -47,7 +47,7 @@
     (font-lock-remove-keywords nil number-separator--font-lock-keyword)))
 
 
-
+(provide 'number-separator)
 
 
 
