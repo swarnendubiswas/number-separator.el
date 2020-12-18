@@ -24,16 +24,16 @@
 	 (split-number (save-match-data
 			 (split-string number separator)))
 	 (integer (car split-number))
-	 (decimal (cadr split-number)))
+	 (fractional (cadr split-number)))
     (concat 
      (cl-loop for x from (- (length integer) number-separator-interval) downto 1 by number-separator-interval
 	      do (progn (setq integer (concat (substring integer 0 x)
 					      number-separator
 					      (substring integer x (length integer)))))
 	      finally return integer)
-     (when decimal
+     (when fractional
        (concat number-separator-decimal-char
-	       decimal)))))
+	       fractional)))))
 
 (define-minor-mode number-separator-mode
   "Separate long numbers."
