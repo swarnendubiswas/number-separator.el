@@ -27,9 +27,9 @@
 	 (fractional (cadr split-number)))
     (concat 
      (cl-loop for x from (- (length integer) number-separator-interval) downto 1 by number-separator-interval
-	      do (progn (setq integer (concat (substring integer 0 x)
-					      number-separator
-					      (substring integer x (length integer)))))
+	      do (setq integer (concat (substring integer 0 x)
+				       number-separator
+				       (substring integer x (length integer))))
 	      finally return integer)
      (when fractional
        (concat number-separator-decimal-char
