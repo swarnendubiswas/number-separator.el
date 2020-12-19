@@ -19,17 +19,22 @@
   "Fix the number and return a new string."
   (let* ((number (match-string 0))
 	 (separator (if (string= "." number-separator-decimal-char)
+			;; `split-string' needs a regexp as a separator,
+			;; so convert a period to a regexp
 			"\\."
 		      number-separator-decimal-char))
-	 (split-number (save-match-data
+	 (split-number (save-match-data ;; `split-string' messes with match-data
 			 (split-string number separator)))
 	 (integer (car split-number))
 	 (fractional (cadr split-number)))
     (concat 
-     (cl-loop for x from (- (length integer) number-separator-interval) downto 1 by number-separator-interval
-	      do (setq integer (concat (substring integer 0 x)
-				       number-separator
-				       (substring integer x (length integer))))
+     (cl-loop for x from (- (length integer) number-separator-interval)
+	      downto 1
+	      by number-separator-interval
+	      do (setq integer
+		       (concat (substring integer 0 x)
+			       number-separator
+			       (substring integer x (length integer))))
 	      finally return integer)
      (when fractional
        (concat number-separator-decimal-char
@@ -45,7 +50,6 @@
 	(push 'display font-lock-extra-managed-props)
 	(font-lock-add-keywords nil number-separator--font-lock-keyword))
     (font-lock-remove-keywords nil number-separator--font-lock-keyword)))
-
 
 (provide 'number-separator)
 
