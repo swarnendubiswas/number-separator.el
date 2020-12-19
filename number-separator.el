@@ -3,13 +3,13 @@
 
 (defcustom number-separator "," "Separator between integer value.") 
 (defcustom number-separator-interval 3 "How to group numbers.")
+(defcustom number-separator-ignore-threshold 4 "How many digits should there be before adding separators?")
 (defcustom number-separator-decimal-char "." "Character separating integer from decimal value.")
 
 (defvar number-separator--font-lock-keyword
-  `((,(rx (>= 5 digit)
-	  (zero-or-one
-	   (eval number-separator-decimal-char))
-	  (zero-or-more digit))
+  `((,(concat "[[:digit:]]\\{"
+	      (number-to-string number-separator-ignore-threshold)
+	      ",\\}\\.?[[:digit:]]*")
      (0 (list
 	 'face nil
 	 'display (number-separator)))))
