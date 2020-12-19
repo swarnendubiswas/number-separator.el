@@ -6,7 +6,7 @@
 (defcustom number-separator-decimal-char "." "Character separating integer from decimal value.")
 
 (defvar number-separator--font-lock-keyword
-  `((,(rx (one-or-more digit)
+  `((,(rx (>= 5 digit)
 	  (zero-or-one
 	   (eval number-separator-decimal-char))
 	  (zero-or-more digit))
