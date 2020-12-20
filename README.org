@@ -32,7 +32,6 @@ Or if you are European:
     :custom
     (number-separator ".")
     (number-separator-interval 3)
-    (number-separator-interval 3)
     (number-separator-ignore-threshold 4)
     (number-separator-decimal-char ",")
     :config
