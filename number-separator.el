@@ -21,29 +21,14 @@
 	    ;; and don't check if not enough digits
 	    (<= (length number) number-separator-ignore-threshold))
 	nil ;; Don't set the display property 
-      (let* ((separator (if (string= "." number-separator-decimal-char)
-			    ;; `split-string' needs a regexp as a separator
-			    "\\."
-			  number-separator-decimal-char))
-	     (split-number (save-match-data
-			     ;; `split-string' messes with match-data
-			     ;; Not sure if it's necessary to save it.
-  			     (split-string number separator)))
-	     (integer (car split-number))
-	     (fractional (cadr split-number)))
-	(when (> (length integer) number-separator-ignore-threshold)
-	  (concat 
-	   (cl-loop for x from (- (length integer) number-separator-interval)
-		    downto 1
-		    by number-separator-interval
-		    do (setq integer
-			     (concat (substring integer 0 x)
-				     number-separator
-				     (substring integer x (length integer))))
-		    finally return integer)
-	   (when fractional
-	     (concat number-separator-decimal-char
-		     fractional))))))))
+      (cl-loop for x from (- (length number) number-separator-interval)
+	       downto 1
+	       by number-separator-interval
+	       do (setq number
+			(concat (substring number 0 x)
+				number-separator
+				(substring number x (length number))))
+	       finally return number))))
 
 (define-minor-mode number-separator-mode
   "Separate long numbers."
