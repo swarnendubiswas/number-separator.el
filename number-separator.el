@@ -1,4 +1,3 @@
-(require 'rx)
 (require 'font-lock)
 
 (defcustom number-separator "," "Separator between integer value.") 
@@ -18,7 +17,7 @@
   (let ((number (match-string 0)))
     (if (or (string-prefix-p number-separator-decimal-char number)
 	    (<= (length number) number-separator-ignore-threshold))
-	nil ;; Don't set the display property 
+	nil
       (cl-loop for x from (- (length number) number-separator-interval)
 	       downto 1
 	       by number-separator-interval
