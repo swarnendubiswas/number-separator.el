@@ -16,9 +16,7 @@
 (defun number-separator ()  
   "Fix the number and return a new string."
   (let ((number (match-string 0)))
-    (if (or (string-prefix-p "." number)
-	    ;; Don't check a fractional alone,
-	    ;; and don't check if not enough digits
+    (if (or (string-prefix-p number-separator-decimal-char number)
 	    (<= (length number) number-separator-ignore-threshold))
 	nil ;; Don't set the display property 
       (cl-loop for x from (- (length number) number-separator-interval)
