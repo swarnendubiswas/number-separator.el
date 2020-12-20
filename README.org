@@ -19,6 +19,7 @@ or
     :custom
     (number-separator ",")
     (number-separator-interval 3)
+    (number-separator-ignore-threshold 4)
     (number-separator-decimal-char ".")
     :config
     (number-separator-mode))
@@ -31,6 +32,8 @@ Or if you are European:
     :custom
     (number-separator ".")
     (number-separator-interval 3)
+    (number-separator-interval 3)
+    (number-separator-ignore-threshold 4)
     (number-separator-decimal-char ",")
     :config
     (number-separator-mode))
@@ -40,6 +43,7 @@ You can customize the following variables:
 - =number-separator= :: character used to separate groups of integer numbers. Default: =“,”=
 - =number-separator-interval= :: how many numbers in each group? Default: =3=.
 - =number-separator-decimal-char= :: how do you separate integers from fractionals. Default =“.”=
+- =number-separator-ignore-threshold= :: don’t begin separating numbers until they have more than this many digits. Default =4= (i.e., to avoid separating four digit years)
 
 
 
